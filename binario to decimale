@@ -1,0 +1,46 @@
+ static void Main(string[] args)
+ {
+     int intero = 0;
+     string input;
+     bool bit;
+     bool errato = false;
+     bool[] array = new bool[4];
+     for (int i = 0; i < array.Length; i++)
+     {
+         do
+         {
+             Console.WriteLine("Inserisci un bit (0 o 1):");
+             input = Console.ReadLine();
+             if (input!="0" && input != "1")
+             {
+                 errato = true;
+             }
+
+         } while (errato);
+         bit = (input == "1");
+         array[i] = bit;
+
+
+         
+     }
+     intero=ConvertBinarioToIntero(array);
+     Console.WriteLine(intero);
+     Console.ReadLine();
+ }
+ static int ConvertBinarioToIntero(bool[] b)
+ {
+     int potenza;
+     int j = 0;
+     int intero = 0;
+     for (int i = b.Length-1; i >=0; i--)
+     {
+         
+         potenza = (int)Math.Pow(2, j);
+         if (b[i])
+         {
+             intero = intero + (Convert.ToInt32(b[i]) * potenza);
+         }
+         j++;
+     }
+     return intero;
+ }
