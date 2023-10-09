@@ -1,0 +1,42 @@
+ static int[] Convert_binario_to_decimalePuntato(bool[] bn)
+        {
+            int[] risulato = new int[2]; 
+            int potenza = 31; 
+            for (int i = 0; i < bn.Length; i++)
+            {
+                if (i == 16)
+                {
+                    potenza = -1; 
+                }
+
+                if (bn[i])
+                {
+                    risulato[i / 16] += (int)Math.Pow(2, potenza);
+                }
+
+                potenza--;
+            }
+
+            return risulato;
+        }
+        static bool[] Convert_Decimale_Puntato_To_Binario(int[] dp)
+        {
+            int intera = dp[0];
+            int decimale = dp[1];
+
+            bool[] binario = new bool[32]; 
+
+           
+            for (int i = 31; i >= 16; i--)
+            {
+                binario[i] = (intera & (1 << (31 - i))) != 0;
+            }
+
+           
+            for (int i = 15; i >= 0; i--)
+            {
+                binario[i] = (decimale & (1 << (15 - i))) != 0;
+            }
+
+            return binario;
+        }
